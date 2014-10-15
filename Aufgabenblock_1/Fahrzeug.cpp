@@ -35,7 +35,6 @@ void Fahrzeug::vInitialisiere()
 	p_dZeit = 0.0;
 }
 
-
 Fahrzeug::~Fahrzeug()
 {
 	cout << "Fahrzeug entfernt: '" << p_sName << "' (" << p_iID << ")" << endl;
@@ -43,8 +42,11 @@ Fahrzeug::~Fahrzeug()
 
 void Fahrzeug::vAusgabe()
 {
+	cout << resetiosflags(ios::right) << setiosflags(ios::left | ios::fixed);
+	cout << setprecision(1);
 	cout << setw(4) << p_iID;
 	cout << setw(7) << p_sName << " : ";
-	cout << setw(6) << p_dMaxGeschwindigkeit;
+
+	cout << setw(10) << p_dMaxGeschwindigkeit;
 	cout << setw(10) << p_dGesamtStrecke;
 }

@@ -1,8 +1,19 @@
 #include "Fahrzeug.h"
 #include <string>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
+
+void vFahrzeugHeader()
+{
+	cout << resetiosflags(ios::right) << setiosflags(ios::left);
+	cout << setw(4) << "ID";
+	cout << setw(7) << "Name" << " : ";
+	cout << setw(10) << "MaxKmh";
+	cout << setw(10) << "GesamtStrecke";
+	cout << "\n+++++++++++++++++++++++++++++++++++++++++" << endl;
+}
 
 void vAufgabe_1()
 {
@@ -17,6 +28,7 @@ void vAufgabe_1()
 
 	f3 = new Fahrzeug(sName, 70.0);
 
+	vFahrzeugHeader();
 	f0.vAusgabe(); cout << endl;
 	f1.vAusgabe(); cout << endl;
 	f2->vAusgabe(); cout << endl;
