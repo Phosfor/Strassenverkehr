@@ -18,7 +18,7 @@ void vFahrzeugHeader()
 void vAufgabe_1()
 {
 	Fahrzeug f0, f1("F1");
-	Fahrzeug *f2, *f3, *f4;
+	Fahrzeug *f2, *f3, *f4, *f5;
 	f2 = new Fahrzeug;
 
 	string sName;
@@ -28,6 +28,7 @@ void vAufgabe_1()
 
 	f3 = new Fahrzeug(sName, 70.0);
 	f4 = new Fahrzeug("", 30.0);
+	f5 = new Fahrzeug("", 30.0);
 
 	vFahrzeugHeader();
 	f0.vAusgabe(); cout << endl;
@@ -35,7 +36,9 @@ void vAufgabe_1()
 	f2->vAusgabe(); cout << endl;
 	f3->vAusgabe(); cout << endl;
 	f4->vAusgabe(); cout << endl;
+	f5->vAusgabe(); cout << endl;
 
+	delete f5;
 	delete f4;
 	delete f3;
 	delete f2;
