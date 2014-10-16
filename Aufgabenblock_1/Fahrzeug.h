@@ -11,7 +11,8 @@ public:
 	Fahrzeug(const string& sName, const double dMaxGeschwindigkeit);
 	virtual ~Fahrzeug();
 
-	void vAusgabe();
+	virtual void vAbfertigung();
+	virtual void vAusgabe();
 private:
 	string p_sName;
 	int p_iID;

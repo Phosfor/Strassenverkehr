@@ -3,6 +3,7 @@
 #include <iomanip>
 
 int Fahrzeug::p_iMaxID;
+extern double dGlobaleZeit;
 
 Fahrzeug::Fahrzeug()
 {
@@ -49,4 +50,12 @@ void Fahrzeug::vAusgabe()
 
 	cout << setw(10) << p_dMaxGeschwindigkeit;
 	cout << setw(10) << p_dGesamtStrecke;
+}
+
+void Fahrzeug::vAbfertigung()
+{
+	double dZeitDiff = dGlobaleZeit - p_dZeit;
+	if (dZeitDiff == 0.0) return;
+	p_dZeit = dGlobaleZeit;
+	p_dGesamtStrecke += dZeitDiff * p_dMaxGeschwindigkeit;
 }

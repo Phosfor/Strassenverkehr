@@ -5,6 +5,8 @@
 
 using namespace std;
 
+double dGlobaleZeit = 0.0;
+
 void vFahrzeugHeader()
 {
 	cout << resetiosflags(ios::right) << setiosflags(ios::left);
@@ -38,14 +40,46 @@ void vAufgabe_1()
 	f4->vAusgabe(); cout << endl;
 	f5->vAusgabe(); cout << endl;
 
+	double dInterval = 0.3;
+	for (int i = 0; i < 25; i++) {
+		dGlobaleZeit += dInterval;
+		f0.vAbfertigung();
+		f1.vAbfertigung();
+		f2->vAbfertigung();
+		f3->vAbfertigung();
+		f4->vAbfertigung();
+		f5->vAbfertigung();
+		f5->vAbfertigung();
+
+		cout << endl;
+		f0.vAusgabe(); cout << endl;
+		f1.vAusgabe(); cout << endl;
+		f2->vAusgabe(); cout << endl;
+		f3->vAusgabe(); cout << endl;
+		f4->vAusgabe(); cout << endl;
+		f5->vAusgabe(); cout << endl;
+	}
+
 	delete f5;
 	delete f4;
 	delete f3;
 	delete f2;
 }
 
+void vAufgabe_1_deb()
+{
+	Fahrzeug f0, f1, f2, f3;
+	Fahrzeug* pFahrzeuge[4] = { &f0, &f1, &f2, &f3 };
+	pFahrzeuge[2] = 0; //Fehler einbauen
+
+	vFahrzeugHeader();
+	for (int i = 0; i < 4; i++) {
+		pFahrzeuge[i]->vAusgabe();
+	}
+}
+
 void main() {
-	vAufgabe_1();
+	vAufgabe_1_deb();
 
 	/*string tmp;
 	cin >> tmp;*/
