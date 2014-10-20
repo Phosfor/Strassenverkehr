@@ -12,8 +12,9 @@ void vFahrzeugHeader()
 	cout << resetiosflags(ios::right) << setiosflags(ios::left);
 	cout << setw(4) << "ID";
 	cout << setw(7) << "Name" << " : ";
+	cout << setw(10) << "KmH";
 	cout << setw(10) << "MaxKmh";
-	cout << setw(10) << "GesamtStrecke";
+	cout << setw(10) << "Strecke";
 	cout << "\n+++++++++++++++++++++++++++++++++++++++++" << endl;
 }
 
@@ -70,13 +71,20 @@ void vAufgabe_1_deb()
 {
 	Fahrzeug f0, f1, f2, f3;
 	Fahrzeug* pFahrzeuge[4] = { &f0, &f1, &f2, &f3 };
-	pFahrzeuge[2] = 0; //Fehler einbauen
 
 	vFahrzeugHeader();
+	for (int i = 0; i < 4; i++)
+	{
+		pFahrzeuge[i]->vAusgabe(); cout << endl;
+	}
+
+	pFahrzeuge[2] = 0; //Fehler einbauen
+
 	for (int i = 0; i < 4; i++) {
-		pFahrzeuge[i]->vAusgabe();
+		pFahrzeuge[i]->vAusgabe(); cout << endl;
 	}
 }
+
 
 void main() {
 	vAufgabe_1();
