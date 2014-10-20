@@ -13,6 +13,7 @@ public:
 
 	virtual void vAbfertigung();
 	virtual void vAusgabe();
+
 private:
 	string p_sName;
 	int p_iID;
@@ -21,5 +22,6 @@ private:
 
 	static int p_iMaxID;
 
-	void vInitialisiere();
+protected:
+	virtual void vInitialisiere();
 };

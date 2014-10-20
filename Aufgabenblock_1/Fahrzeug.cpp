@@ -8,14 +8,14 @@ extern double dGlobaleZeit;
 Fahrzeug::Fahrzeug()
 {
 	vInitialisiere();
-	cout << "Neues Fahrzeug: '" << p_sName << "' (" << p_iID << ")" << endl;
+	//cout << "Neues Fahrzeug: '" << p_sName << "' (" << p_iID << ")" << endl;
 }
 
 Fahrzeug::Fahrzeug(const string& sName)
 {
 	vInitialisiere();
 	p_sName = sName;
-	cout << "Neues Fahrzeug: '" << p_sName << "' (" << p_iID << ")" << endl;
+	//cout << "Neues Fahrzeug: '" << p_sName << "' (" << p_iID << ")" << endl;
 }
 
 Fahrzeug::Fahrzeug(const string& sName, const double dMaxGeschwindigkeit)
@@ -23,7 +23,7 @@ Fahrzeug::Fahrzeug(const string& sName, const double dMaxGeschwindigkeit)
 	vInitialisiere();
 	p_sName = sName;
 	p_dMaxGeschwindigkeit = dMaxGeschwindigkeit;
-	cout << "Neues Fahrzeug: '" << p_sName << "' (" << p_iID << ")" << endl;
+	//cout << "Neues Fahrzeug: '" << p_sName << "' (" << p_iID << ")" << endl;
 }
 
 void Fahrzeug::vInitialisiere()
@@ -38,7 +38,7 @@ void Fahrzeug::vInitialisiere()
 
 Fahrzeug::~Fahrzeug()
 {
-	cout << "Fahrzeug entfernt: '" << p_sName << "' (" << p_iID << ")" << endl;
+	//cout << "Fahrzeug entfernt: '" << p_sName << "' (" << p_iID << ")" << endl;
 }
 
 void Fahrzeug::vAusgabe()

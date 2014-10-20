@@ -79,7 +79,7 @@ void vAufgabe_1_deb()
 }
 
 void main() {
-	vAufgabe_1_deb();
+	vAufgabe_1();
 
 	/*string tmp;
 	cin >> tmp;*/
