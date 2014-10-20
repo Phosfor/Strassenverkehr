@@ -55,7 +55,12 @@ void Fahrzeug::vAusgabe()
 void Fahrzeug::vAbfertigung()
 {
 	double dZeitDiff = dGlobaleZeit - p_dZeit;
-	if (dZeitDiff == 0.0) return;
+	//if (dZeitDiff == 0.0) return;
 	p_dZeit = dGlobaleZeit;
 	p_dGesamtStrecke += dZeitDiff * p_dMaxGeschwindigkeit;
+}
+
+double Fahrzeug::dTanken(double dMenge)
+{
+	return 0.0;
 }
