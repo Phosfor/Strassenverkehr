@@ -13,6 +13,7 @@ public:
 
 	virtual void vAbfertigung();
 	virtual void vAusgabe();
+	virtual double dGeschwindigkeit();
 
 	virtual double dTanken(double dMenge = -1.0);
 
@@ -20,12 +21,11 @@ private:
 	string p_sName;
 	int p_iID;
 
-	double p_dMaxGeschwindigkeit, p_dGesamtStrecke, p_dGesamtZeit;
+	double p_dGesamtZeit;
 
 	static int p_iMaxID;
 
 protected:
 	virtual void vInitialisiere();
-
-	double p_dZeit;
+	double p_dGesamtStrecke, p_dMaxGeschwindigkeit, p_dZeit;
 };
