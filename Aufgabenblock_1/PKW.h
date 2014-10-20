@@ -21,7 +21,8 @@ public:
 private:
 	double p_dVerbrauch, p_dTankinhalt, p_dTankvolumen, p_dGesamtVerbrauch;
 
+	void vInitialisiere();
 protected:
-	virtual void vInitialisiere();
+	
 };
 

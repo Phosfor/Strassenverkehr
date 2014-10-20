@@ -25,7 +25,8 @@ private:
 
 	static int p_iMaxID;
 
+	void vInitialisiere();
+
 protected:
-	virtual void vInitialisiere();
 	double p_dGesamtStrecke, p_dMaxGeschwindigkeit, p_dZeit;
 };

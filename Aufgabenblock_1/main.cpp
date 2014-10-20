@@ -92,17 +92,42 @@ void vAufgabe_2()
 	int iPKWs, iFahrraeder;
 	cout << "Anzahl PKWs? ";
 	cin >> iPKWs;
-	cout << "\n Anzahl Fahrraeder? ";
+	cout << "Anzahl Fahrraeder? ";
 	cin >> iFahrraeder;
 
 	vector<Fahrzeug*> fahrzeuge;
 	for (int i = 0; i < iPKWs; i++) {
-		PKW* pkw = new PKW;
+		string sName;
+		double dMaxGeschwindigkeit, dVerbrauch;
+		cout << "Fahrzeug " << i << endl;
+		cout << "Name: "; cin >> sName;
+		cout << "Max Geschwindigkeit: "; cin >> dMaxGeschwindigkeit;
+		cout << "Verbrauch: "; cin >> dVerbrauch;
+		cout << endl;
+		PKW* pkw = new PKW(sName, dMaxGeschwindigkeit, dVerbrauch);
+
+		fahrzeuge.push_back(pkw);
+	}
+
+	vFahrzeugHeader();
+	double dInterval = 0.1;
+	while (dGlobaleZeit < 3.0)
+	{
+		dGlobaleZeit += dInterval;
+		for (vector<Fahrzeug*>::iterator it = fahrzeuge.begin(); it != fahrzeuge.end(); it++) {
+			(*it)->vAbfertigung();
+			(*it)->vAusgabe(); cout << endl;
+		}
+		cout << "----" << endl;
+	}
+
+	for (vector<Fahrzeug*>::iterator it = fahrzeuge.begin(); it != fahrzeuge.end(); it++) {
+		delete *it;
 	}
 }
 
 void main() {
-	vAufgabe_1();
+	vAufgabe_2();
 
 	/*string tmp;
 	cin >> tmp;*/
