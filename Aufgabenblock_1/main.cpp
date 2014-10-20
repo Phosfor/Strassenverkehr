@@ -1,7 +1,9 @@
 #include "Fahrzeug.h"
+#include "PKW.h"
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <vector>
 
 using namespace std;
 
@@ -75,6 +77,20 @@ void vAufgabe_1_deb()
 	vFahrzeugHeader();
 	for (int i = 0; i < 4; i++) {
 		pFahrzeuge[i]->vAusgabe();
+	}
+}
+
+void vAufgabe_2()
+{
+	int iPKWs, iFahrraeder;
+	cout << "Anzahl PKWs? ";
+	cin >> iPKWs;
+	cout << "\n Anzahl Fahrraeder? ";
+	cin >> iFahrraeder;
+
+	vector<Fahrzeug*> fahrzeuge;
+	for (int i = 0; i < iPKWs; i++) {
+		PKW* pkw = new PKW;
 	}
 }
 
