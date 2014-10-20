@@ -20,7 +20,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -76,10 +76,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Fahrrad.h" />
     <ClInclude Include="Fahrzeug.h" />
     <ClInclude Include="PKW.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Fahrrad.cpp" />
     <ClCompile Include="Fahrzeug.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PKW.cpp" />
