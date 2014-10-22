@@ -14,7 +14,8 @@ public:
 	virtual ~PKW();
 
 	virtual void vAbfertigung();
-	virtual void vAusgabe();
+
+	virtual ostream& ostreamAusgabe(ostream& os);
 
 	virtual double dTanken(double dMenge = -1.0);
 

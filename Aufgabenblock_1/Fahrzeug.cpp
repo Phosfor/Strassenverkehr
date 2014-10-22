@@ -43,14 +43,7 @@ Fahrzeug::~Fahrzeug()
 
 void Fahrzeug::vAusgabe()
 {
-	cout << resetiosflags(ios::right) << setiosflags(ios::left | ios::fixed);
-	cout << setprecision(1);
-	cout << setw(4) << p_iID;
-	cout << setw(7) << p_sName << " : ";
-
-	cout << setw(10) << dGeschwindigkeit();
-	cout << setw(10) << p_dMaxGeschwindigkeit;
-	cout << setw(10) << p_dGesamtStrecke;
+	ostreamAusgabe(cout);
 }
 
 void Fahrzeug::vAbfertigung()
@@ -69,4 +62,23 @@ double Fahrzeug::dGeschwindigkeit()
 double Fahrzeug::dTanken(double dMenge)
 {
 	return 0.0;
+}
+
+ostream& Fahrzeug::ostreamAusgabe(ostream& os)
+{
+	os << resetiosflags(ios::right) << setiosflags(ios::left | ios::fixed);
+	os << setprecision(1);
+	os << setw(4) << p_iID;
+	os << setw(7) << p_sName << " : ";
+
+	os << setw(10) << dGeschwindigkeit();
+	os << setw(10) << p_dMaxGeschwindigkeit;
+	os << setw(10) << p_dGesamtStrecke;
+
+	return os;
+}
+
+ostream& operator<<(ostream& os, Fahrzeug& fahrzeug)
+{
+	return fahrzeug.ostreamAusgabe(os);
 }

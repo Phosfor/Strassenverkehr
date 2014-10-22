@@ -61,12 +61,13 @@ double PKW::dTanken(double dMenge)
 	}
 }
 
-void PKW::vAusgabe()
+ostream& PKW::ostreamAusgabe(ostream& os)
 {
-	Fahrzeug::vAusgabe();
-	cout << setprecision(1);
-	cout << setw(7) << p_dGesamtVerbrauch;
-	cout << setw(7) << p_dTankinhalt;// << "/" << p_dTankvolumen;
+	Fahrzeug::ostreamAusgabe(os);
+	os << setprecision(1);
+	os << setw(7) << p_dGesamtVerbrauch;
+	os << setw(7) << p_dTankinhalt;// << "/" << p_dTankvolumen;
+	return os;
 }
 
 void PKW::vAbfertigung()

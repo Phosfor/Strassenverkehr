@@ -12,10 +12,12 @@ public:
 	virtual ~Fahrzeug();
 
 	virtual void vAbfertigung();
-	virtual void vAusgabe();
+	void vAusgabe();
 	virtual double dGeschwindigkeit();
 
 	virtual double dTanken(double dMenge = -1.0);
+
+	virtual ostream& ostreamAusgabe(ostream& os);
 
 private:
 	string p_sName;
@@ -30,3 +32,5 @@ private:
 protected:
 	double p_dGesamtStrecke, p_dMaxGeschwindigkeit, p_dZeit;
 };
+
+ostream& operator<<(ostream& os, Fahrzeug& fahrzeug);
