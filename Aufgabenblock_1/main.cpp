@@ -17,6 +17,8 @@ void vFahrzeugHeader()
 	cout << setw(10) << "KmH";
 	cout << setw(10) << "MaxKmh";
 	cout << setw(10) << "Strecke";
+	cout << setw(7) << "Tank";
+	cout << setw(10) << "Verbrauch";
 	cout << "\n+++++++++++++++++++++++++++++++++++++++++" << endl;
 }
 
@@ -111,11 +113,13 @@ void vAufgabe_2()
 
 	vFahrzeugHeader();
 	double dInterval = 0.1;
-	while (dGlobaleZeit < 3.0)
+	while (dGlobaleZeit < 5.0)
 	{
 		dGlobaleZeit += dInterval;
 		for (vector<Fahrzeug*>::iterator it = fahrzeuge.begin(); it != fahrzeuge.end(); it++) {
 			(*it)->vAbfertigung();
+			if (fabs(dGlobaleZeit - 3.0) < 0.0000000001)
+				(*it)->dTanken();
 			(*it)->vAusgabe(); cout << endl;
 		}
 		cout << "----" << endl;

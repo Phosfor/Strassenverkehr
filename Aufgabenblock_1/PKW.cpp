@@ -65,8 +65,8 @@ ostream& PKW::ostreamAusgabe(ostream& os)
 {
 	Fahrzeug::ostreamAusgabe(os);
 	os << setprecision(1);
-	os << setw(7) << p_dGesamtVerbrauch;
 	os << setw(7) << p_dTankinhalt;// << "/" << p_dTankvolumen;
+	os << setw(10) << p_dGesamtVerbrauch;
 	return os;
 }
 
