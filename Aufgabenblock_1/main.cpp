@@ -1,5 +1,6 @@
 #include "Fahrzeug.h"
 #include "PKW.h"
+#include "Fahrrad.h"
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -107,6 +108,13 @@ void vAufgabe_2()
 		PKW* pkw = new PKW(sName, dMaxGeschwindigkeit, dVerbrauch);
 
 		fahrzeuge.push_back(pkw);
+	}
+
+	for (int i = 0; i < iFahrraeder; i++) {
+		cout << "Fahrrad" << "Nr. " << i << endl;
+		Fahrrad* fahrrad = new Fahrrad;
+
+		fahrzeuge.push_back(fahrrad);
 	}
 
 	vFahrzeugHeader();

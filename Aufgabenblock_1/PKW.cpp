@@ -1,5 +1,5 @@
 #include "PKW.h"
-#include <math.h>
+#include <algorithm>
 #include <iostream>
 #include <iomanip>
 
@@ -55,7 +55,7 @@ double PKW::dTanken(double dMenge)
 		p_dTankinhalt = p_dTankvolumen;
 		return dMenge;
 	} else {
-		dMenge = fmin(dMenge, p_dTankvolumen - p_dTankinhalt);
+		dMenge = min(dMenge, p_dTankvolumen - p_dTankinhalt);
 		p_dTankinhalt += dMenge;
 		return dMenge;
 	}
