@@ -7,6 +7,7 @@ class Fahrzeug
 {
 public:
 	Fahrzeug();
+	Fahrzeug(const Fahrzeug& other);
 	Fahrzeug(const string& sName);
 	Fahrzeug(const string& sName, const double dMaxGeschwindigkeit);
 	virtual ~Fahrzeug();
@@ -18,6 +19,8 @@ public:
 	virtual double dTanken(double dMenge = -1.0);
 
 	virtual ostream& ostreamAusgabe(ostream& os);
+
+	bool operator<(Fahrzeug& other);
 
 private:
 	string p_sName;

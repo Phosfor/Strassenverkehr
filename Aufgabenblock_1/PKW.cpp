@@ -12,6 +12,15 @@ PKW::PKW() : Fahrzeug()
 	vInitialisiere();
 }
 
+PKW::PKW(const PKW& other) : Fahrzeug(other)
+{
+	vInitialisiere();
+	p_dVerbrauch = other.p_dVerbrauch;
+	p_dTankinhalt = p_dTankvolumen = other.p_dTankvolumen;
+}
+
+
+
 PKW::PKW(const string& sName) : Fahrzeug(sName)
 {
 	vInitialisiere();

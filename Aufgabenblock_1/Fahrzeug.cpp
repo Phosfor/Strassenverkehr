@@ -11,6 +11,13 @@ Fahrzeug::Fahrzeug()
 	//cout << "Neues Fahrzeug: '" << p_sName << "' (" << p_iID << ")" << endl;
 }
 
+Fahrzeug::Fahrzeug(const Fahrzeug& other)
+{
+	vInitialisiere();
+	p_sName = other.p_sName;
+	p_dMaxGeschwindigkeit = other.p_dMaxGeschwindigkeit;
+}
+
 Fahrzeug::Fahrzeug(const string& sName)
 {
 	vInitialisiere();
@@ -76,6 +83,11 @@ ostream& Fahrzeug::ostreamAusgabe(ostream& os)
 	os << setw(10) << p_dGesamtStrecke;
 
 	return os;
+}
+
+bool Fahrzeug::operator<(Fahrzeug& other)
+{
+	return p_dGesamtStrecke < other.p_dGesamtStrecke;
 }
 
 ostream& operator<<(ostream& os, Fahrzeug& fahrzeug)

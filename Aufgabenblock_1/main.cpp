@@ -130,8 +130,24 @@ void vAufgabe_2()
 	}
 }
 
+void vAufgabe_3()
+{
+	dGlobaleZeit = 1.0;
+	PKW p0("test", 10.0, 100, 3000), p1("test2", 20.0);
+	p1.vAbfertigung();
+	cout << p0 << endl << p1 << endl;
+	cout << "test < test2? " << (p0 < p1) << endl;
+
+
+	PKW copy(p0);
+	cout << "Kopie: " << copy << endl;
+	PKW assign = p0;
+	cout << "Zuweisung: " << assign << endl;
+
+}
+
 void main() {
-	vAufgabe_2();
+	vAufgabe_3();
 
 	/*string tmp;
 	cin >> tmp;*/

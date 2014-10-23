@@ -7,6 +7,7 @@ class PKW :
 {
 public:
 	PKW();
+	PKW(const PKW& other);
 	PKW(const string& sName);
 	PKW(const string& sName, const double dMaxGeschwindigkeit);
 	PKW(const string& sName, const double dMaxGeschwindigkeit, double dVerbrauch);
