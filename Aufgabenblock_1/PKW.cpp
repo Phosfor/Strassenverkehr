@@ -12,6 +12,15 @@ PKW::PKW() : Fahrzeug()
 	vInitialisiere();
 }
 
+PKW::PKW(const PKW& other) : Fahrzeug(other)
+{
+	vInitialisiere();
+	p_dVerbrauch = other.p_dVerbrauch;
+	p_dTankinhalt = p_dTankvolumen = other.p_dTankvolumen;
+}
+
+
+
 PKW::PKW(const string& sName) : Fahrzeug(sName)
 {
 	vInitialisiere();
@@ -61,12 +70,13 @@ double PKW::dTanken(double dMenge)
 	}
 }
 
-void PKW::vAusgabe()
+ostream& PKW::ostreamAusgabe(ostream& os)
 {
-	Fahrzeug::vAusgabe();
-	cout << setprecision(1);
-	cout << setw(7) << p_dGesamtVerbrauch;
-	cout << setw(7) << p_dTankinhalt;// << "/" << p_dTankvolumen;
+	Fahrzeug::ostreamAusgabe(os);
+	os << setprecision(1);
+	os << setw(7) << p_dTankinhalt;// << "/" << p_dTankvolumen;
+	os << setw(10) << p_dGesamtVerbrauch;
+	return os;
 }
 
 void PKW::vAbfertigung()

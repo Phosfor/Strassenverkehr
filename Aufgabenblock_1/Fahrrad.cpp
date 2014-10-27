@@ -18,7 +18,18 @@ double Fahrrad::dGeschwindigkeit()
 	double dStrecke = p_dGesamtStrecke;
 	while (p_dGesamtStrecke >= 20.0 && dGeschwindigkeit >= 12.0)
 	{
+		//if(dGeschwindigkeit < 12.0) {dGeschwindigkeit = 12.0} falls dGeschwindigkeit durch die Schleife auf unter 12.0 fällt
+		//auf 12.0 wieder hochsetzen.
 		dGeschwindigkeit *= 0.9;
 	}
 	return dGeschwindigkeit;
+}
+
+ostream& Fahrrad::ostreamAusgabe(ostream& os)
+{
+	Fahrzeug::ostreamAusgabe(os);
+	
+	os << setprecision(1);
+	os << setw(10) << dGeschwindigkeit;
+	return os;
 }
