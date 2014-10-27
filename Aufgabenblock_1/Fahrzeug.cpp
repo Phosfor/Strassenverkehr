@@ -48,7 +48,7 @@ Fahrzeug::~Fahrzeug()
 	//cout << "Fahrzeug entfernt: '" << p_sName << "' (" << p_iID << ")" << endl;
 }
 
-void Fahrzeug::vAusgabe()
+void Fahrzeug::vAusgabe() const
 {
 	ostreamAusgabe(cout);
 }
@@ -61,7 +61,7 @@ void Fahrzeug::vAbfertigung()
 	p_dGesamtStrecke += dZeitDiff * dGeschwindigkeit(); //p_dMaxGeschwindigkeit
 }
 
-double Fahrzeug::dGeschwindigkeit()
+double Fahrzeug::dGeschwindigkeit() const
 {
 	return p_dMaxGeschwindigkeit;
 }
@@ -71,7 +71,7 @@ double Fahrzeug::dTanken(double dMenge)
 	return 0.0;
 }
 
-ostream& Fahrzeug::ostreamAusgabe(ostream& os)
+ostream& Fahrzeug::ostreamAusgabe(ostream& os) const
 {
 	os << resetiosflags(ios::right) << setiosflags(ios::left | ios::fixed);
 	os << setprecision(1);
@@ -85,12 +85,12 @@ ostream& Fahrzeug::ostreamAusgabe(ostream& os)
 	return os;
 }
 
-bool Fahrzeug::operator<(Fahrzeug& other)
+bool Fahrzeug::operator<(const Fahrzeug& other) const
 {
 	return p_dGesamtStrecke < other.p_dGesamtStrecke;
 }
 
-ostream& operator<<(ostream& os, Fahrzeug& fahrzeug)
+ostream& operator<<(ostream& os, const Fahrzeug& fahrzeug)
 {
 	return fahrzeug.ostreamAusgabe(os);
 }

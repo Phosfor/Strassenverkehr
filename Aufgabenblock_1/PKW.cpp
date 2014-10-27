@@ -16,7 +16,8 @@ PKW::PKW(const PKW& other) : Fahrzeug(other)
 {
 	vInitialisiere();
 	p_dVerbrauch = other.p_dVerbrauch;
-	p_dTankinhalt = p_dTankvolumen = other.p_dTankvolumen;
+	p_dTankvolumen = other.p_dTankvolumen;
+	p_dTankinhalt = 0.5 * p_dTankvolumen;
 }
 
 
@@ -41,7 +42,8 @@ PKW::PKW(const string& sName, const double dMaxGeschwindigkeit, double dVerbrauc
 {
 	vInitialisiere();
 	p_dVerbrauch = dVerbrauch;
-	p_dTankinhalt = p_dTankvolumen = dTankvolumen;
+	p_dTankvolumen = dTankvolumen;
+	p_dTankinhalt = 0.5 * p_dTankvolumen;
 }
 
 
@@ -53,7 +55,8 @@ PKW::~PKW()
 void PKW::vInitialisiere()
 {
 	p_dVerbrauch = 10.0;
-	p_dTankinhalt = p_dTankvolumen = 551.0;
+	p_dTankvolumen = 551.0;
+	p_dTankinhalt = 0.5 * p_dTankvolumen;
 	p_dGesamtVerbrauch = 0.0;
 }
 
@@ -70,7 +73,7 @@ double PKW::dTanken(double dMenge)
 	}
 }
 
-ostream& PKW::ostreamAusgabe(ostream& os)
+ostream& PKW::ostreamAusgabe(ostream& os) const
 {
 	Fahrzeug::ostreamAusgabe(os);
 	os << setprecision(1);

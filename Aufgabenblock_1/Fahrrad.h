@@ -6,11 +6,12 @@
 class Fahrrad : public Fahrzeug
 {
 public:
-	Fahrrad(void);
-	~Fahrrad(void);
+	Fahrrad() : Fahrzeug() {}
+	Fahrrad(const Fahrrad& other) : Fahrzeug(other) {}
+	Fahrrad(const string& sName) : Fahrzeug(sName) {}
+	Fahrrad(const string& sName, const double dMaxGeschwindigkeit) : Fahrzeug(sName, dMaxGeschwindigkeit) {}
+	virtual ~Fahrrad();
 
-	double dGeschwindigkeit();
-
-	virtual ostream& ostreamAusgabe(ostream& os);
+	virtual double dGeschwindigkeit() const;
 };
 
