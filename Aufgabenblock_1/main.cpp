@@ -114,7 +114,13 @@ void vAufgabe_2()
 
 	for (int i = 0; i < iFahrraeder; i++) {
 		cout << "Fahrrad" << "Nr. " << i << endl;
-		Fahrrad* fahrrad = new Fahrrad;
+		string sName;
+		double dMaxGeschwindigkeit;
+		cout << "Fahrzeug " << i << endl;
+		cout << "Name: "; cin >> sName;
+		cout << "Max Geschwindigkeit: "; cin >> dMaxGeschwindigkeit;
+		cout << endl;
+		Fahrrad* fahrrad = new Fahrrad(sName, dMaxGeschwindigkeit);
 
 		fahrzeuge.push_back(fahrrad);
 	}
@@ -155,7 +161,7 @@ void vAufgabe_3()
 }
 
 void main() {
-	vAufgabe_3();
+	vAufgabe_2();
 
 	/*string tmp;
 	cin >> tmp;*/
