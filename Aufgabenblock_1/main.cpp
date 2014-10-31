@@ -22,7 +22,9 @@ void vFahrzeugHeader()
 	cout << setw(10) << "Verbrauch";
 	cout << "\n+++++++++++++++++++++++++++++++++++++++++" << endl;
 }
-
+/*Erstellen von Fahrzeugen, f0, f1 statisch und f2, f3, f4, f5 dynamisch;
+**Ausgabe der Fahrzeuge mit ID, Name, Geschwindigkeit, MaxGeschwindigket, Gesamtstrecke;
+*/
 void vAufgabe_1()
 {
 	Fahrzeug f0, f1("F1");
@@ -32,9 +34,9 @@ void vAufgabe_1()
 	string sName;
 	cout << "Name fuer f3? ";
 	//cout.flush();
-	cin >> sName;
+	cin >> sName; 
 
-	f3 = new Fahrzeug(sName, 70.0);
+	f3 = new Fahrzeug(sName, 70.0); //sName wird als Name von f3 wegen der Eingabe übernommen
 	f4 = new Fahrzeug("", 30.0);
 	f5 = new Fahrzeug("", 30.0);
 
@@ -46,7 +48,7 @@ void vAufgabe_1()
 	f4->vAusgabe(); cout << endl;
 	f5->vAusgabe(); cout << endl;
 
-	double dInterval = 0.3;
+	double dInterval = 0.3; //pro Schleifenlauf wird Abfertigung für jedes Fahrzeug aufgerufen, anschließend ausgegeben; 25 Mal
 	for (int i = 0; i < 25; i++) {
 		dGlobaleZeit += dInterval;
 		f0.vAbfertigung();
@@ -65,7 +67,7 @@ void vAufgabe_1()
 		f4->vAusgabe(); cout << endl;
 		f5->vAusgabe(); cout << endl;
 	}
-
+	/*löschen des Heaps*/
 	delete f5;
 	delete f4;
 	delete f3;
@@ -83,13 +85,13 @@ void vAufgabe_1_deb()
 		pFahrzeuge[i]->vAusgabe(); cout << endl;
 	}
 
-	pFahrzeuge[2] = 0; //Fehler einbauen
+	pFahrzeuge[2] = 0; //Fehler einbauen: Fahrzeug - Pointer pFahrzeuge[2] zeigt auf NULL
 
 	for (int i = 0; i < 4; i++) {
-		pFahrzeuge[i]->vAusgabe(); cout << endl;
+		pFahrzeuge[i]->vAusgabe(); cout << endl; //Fehler bei f2: Weil pFahrzeuge[2] auf NULL zeigt, und nicht auf f2, kann f2->Ausgabe() aufgerufen werden;
 	}
 }
-
+/*Erstellen von Fahrrädern und PKWs, die von Fahrzeug erben; dabei gibt der Benutzer die Anzahl der Fahrräder und PKWs an*/
 void vAufgabe_2()
 {
 	int iPKWs, iFahrraeder;
@@ -98,7 +100,7 @@ void vAufgabe_2()
 	cout << "Anzahl Fahrraeder? ";
 	cin >> iFahrraeder;
 
-	vector<Fahrzeug*> fahrzeuge;
+	vector<Fahrzeug*> fahrzeuge; //Die Fahrzeuge werden in einen Vektor eingetragen.
 	for (int i = 0; i < iPKWs; i++) {
 		string sName;
 		double dMaxGeschwindigkeit, dVerbrauch;
@@ -107,7 +109,7 @@ void vAufgabe_2()
 		cout << "Max Geschwindigkeit: "; cin >> dMaxGeschwindigkeit;
 		cout << "Verbrauch: "; cin >> dVerbrauch;
 		cout << endl;
-		PKW* pkw = new PKW(sName, dMaxGeschwindigkeit, dVerbrauch);
+		PKW* pkw = new PKW(sName, dMaxGeschwindigkeit, dVerbrauch); //PKW* pkw zeigt immer auf den neuen PKW-Objekt
 
 		fahrzeuge.push_back(pkw);
 	}
@@ -123,10 +125,10 @@ void vAufgabe_2()
 	double dInterval = 0.1;
 	while (dGlobaleZeit < 5.0)
 	{
-		dGlobaleZeit += dInterval;
+		dGlobaleZeit += dInterval;//dGlobaleZeit anfangs 0;
 		for (vector<Fahrzeug*>::iterator it = fahrzeuge.begin(); it != fahrzeuge.end(); it++) {
 			(*it)->vAbfertigung();
-			if (fabs(dGlobaleZeit - 3.0) < 0.0000000001)
+			if (fabs(dGlobaleZeit - 3.0) < 0.0000000001) //if (dGlobaleZeit == 3.0) Tanke voll auf 551. 
 				(*it)->dTanken();
 			(*it)->vAusgabe(); cout << endl;
 		}
@@ -140,15 +142,17 @@ void vAufgabe_2()
 
 void vAufgabe_3()
 {
+	vFahrzeugHeader();
 	dGlobaleZeit = 1.0;
 	PKW p0("test", 10.0, 100, 3000), p1("test2", 20.0);
 	p1.vAbfertigung();
 	cout << p0 << endl << p1 << endl;
 	cout << "test < test2? " << (p0 < p1) << endl;
 
-
+	/*Benutze copy-Constructor, übernimmt Verbrauch und Tankvolumen von p0, */
 	PKW copy(p0);
 	cout << "Kopie: " << copy << endl;
+	/*Benutze diesmal Zuweisungsoperator, übernimmt alle Attribute, z.B. auch p_iID aus Fahrzeug von p0*/
 	PKW assign = p0;
 	cout << "Zuweisung: " << assign << endl;
 
