@@ -11,7 +11,8 @@ PKW::PKW() : Fahrzeug()
 {
 	vInitialisiere();
 }
-
+/*Copy-Constructor, setzt mit vInitialisiere von PKW auf die entsprechenden Werte, zusätzlich wird Verbrauch und Tankvolumen von
+**other übernommen*/
 PKW::PKW(const PKW& other) : Fahrzeug(other)
 {
 	vInitialisiere();
@@ -51,10 +52,11 @@ PKW::~PKW()
 {
 }
 
-
+/*Jeder PKW wird mit einem Verbrauch von 10.0, einem Tankvolumen 551.0 , die hälfte des Tankvolumens als Tankinhalt und der Verbrauch
+**wird durch die eingabe initialisiert.*/
 void PKW::vInitialisiere()
 {
-	p_dVerbrauch = 10.0;
+	p_dVerbrauch = 10.0; 
 	p_dTankvolumen = 551.0;
 	p_dTankinhalt = 0.5 * p_dTankvolumen;
 	p_dGesamtVerbrauch = 0.0;
@@ -84,8 +86,8 @@ ostream& PKW::ostreamAusgabe(ostream& os) const
 
 void PKW::vAbfertigung()
 {
-	if (p_dTankinhalt < 0.0) return;
-	double dZeitDiff = dGlobaleZeit - p_dZeit;
+	if (p_dTankinhalt < 0.0) return;//p_dTankinhalt ergibt sich aus Tankvolumen, aber woraus ergibt sich p_dTankvolumen?
+	double dZeitDiff = dGlobaleZeit - p_dZeit;//p_dZeit anfangs 0, dann 0.1, 0.2, 0.3, ... Globalezeit 0.1, 0.2, 0.3, 0.4 , ->dZeitDiff = 0.1
 	double dVerbrauch = dZeitDiff * p_dVerbrauch;
 	p_dTankinhalt -= dVerbrauch;
 	if (p_dTankinhalt < 0.0) p_dTankinhalt = 0.0;

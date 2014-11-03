@@ -52,12 +52,12 @@ void Fahrzeug::vAusgabe() const
 {
 	ostreamAusgabe(cout);
 }
-
+/*Lässt die Uhr laufen. Aktualisiert die Attribute.*/
 void Fahrzeug::vAbfertigung()
 {
-	double dZeitDiff = dGlobaleZeit - p_dZeit;
+	double dZeitDiff = dGlobaleZeit - p_dZeit; //dZeitdiff immer auf 0.3; p_dZeit anfangs 0, dann 0.3, 0.6, 0.9 ... (aufgabe1), (aufgabe 2 in 0.1)
 	//if (dZeitDiff == 0.0) return;
-	p_dZeit = dGlobaleZeit;
+	p_dZeit = dGlobaleZeit; //p_dZeit übernimmt den Wert von dGlobalezeit; dGlobaleZeit wird außerhalb der Funktion extern definiert(s.o.)
 	p_dGesamtStrecke += dZeitDiff * dGeschwindigkeit(); //p_dMaxGeschwindigkeit
 }
 
@@ -84,12 +84,12 @@ ostream& Fahrzeug::ostreamAusgabe(ostream& os) const
 
 	return os;
 }
-
+/*Vergleich zweier Gesamtstrecken unterschiedlicher PKWs*/
 bool Fahrzeug::operator<(const Fahrzeug& other) const
 {
 	return p_dGesamtStrecke < other.p_dGesamtStrecke;
 }
-
+/*Durch operatoren Überladung wird für << ostreamAusgabe aufgerufen.*/
 ostream& operator<<(ostream& os, const Fahrzeug& fahrzeug)
 {
 	return fahrzeug.ostreamAusgabe(os);
