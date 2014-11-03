@@ -19,10 +19,10 @@ public:
 	virtual ostream& ostreamAusgabe(ostream& os) const;
 
 	virtual double dTanken(double dMenge = -1.0);
+	PKW& operator=(const PKW& other);
 
 private:
 	double p_dVerbrauch, p_dTankinhalt, p_dTankvolumen, p_dGesamtVerbrauch;
-
 	void vInitialisiere();
 protected:
 	

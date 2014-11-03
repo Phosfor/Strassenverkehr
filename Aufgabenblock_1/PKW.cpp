@@ -57,7 +57,7 @@ PKW::~PKW()
 void PKW::vInitialisiere()
 {
 	p_dVerbrauch = 10.0; 
-	p_dTankvolumen = 551.0;
+	p_dTankvolumen = 55.0;
 	p_dTankinhalt = 0.5 * p_dTankvolumen;
 	p_dGesamtVerbrauch = 0.0;
 }
@@ -86,11 +86,21 @@ ostream& PKW::ostreamAusgabe(ostream& os) const
 
 void PKW::vAbfertigung()
 {
-	if (p_dTankinhalt < 0.0) return;//p_dTankinhalt ergibt sich aus Tankvolumen, aber woraus ergibt sich p_dTankvolumen?
+	if (p_dTankinhalt < 0.0) return;
 	double dZeitDiff = dGlobaleZeit - p_dZeit;//p_dZeit anfangs 0, dann 0.1, 0.2, 0.3, ... Globalezeit 0.1, 0.2, 0.3, 0.4 , ->dZeitDiff = 0.1
 	double dVerbrauch = dZeitDiff * p_dVerbrauch;
 	p_dTankinhalt -= dVerbrauch;
 	if (p_dTankinhalt < 0.0) p_dTankinhalt = 0.0;
-	p_dGesamtVerbrauch += dVerbrauch; //TODO: checken ob hier nur differenz addert werde soll
+	p_dGesamtVerbrauch += dVerbrauch; //TODO: checken ob hier nur differenz addiert werde soll
 	Fahrzeug::vAbfertigung();
+}
+
+PKW& PKW::operator=(const PKW& other)
+{
+	Fahrzeug::operator=(other);
+	p_dVerbrauch = other.p_dVerbrauch; 
+	p_dTankvolumen = other.p_dTankvolumen;
+	p_dTankinhalt = other.p_dTankinhalt;
+	p_dGesamtVerbrauch = other.p_dGesamtVerbrauch;
+	return *this;
 }

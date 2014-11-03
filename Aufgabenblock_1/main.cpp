@@ -118,7 +118,7 @@ void vAufgabe_2()
 		cout << "Fahrrad" << "Nr. " << i << endl;
 		string sName;
 		double dMaxGeschwindigkeit;
-		cout << "Fahrzeug " << i << endl;
+		cout << "Fahrzeug " << i+iPKWs << endl;
 		cout << "Name: "; cin >> sName;
 		cout << "Max Geschwindigkeit: "; cin >> dMaxGeschwindigkeit;
 		cout << endl;
@@ -134,7 +134,7 @@ void vAufgabe_2()
 		dGlobaleZeit += dInterval;//dGlobaleZeit anfangs 0;
 		for (vector<Fahrzeug*>::iterator it = fahrzeuge.begin(); it != fahrzeuge.end(); it++) {
 			(*it)->vAbfertigung();
-			if (fabs(dGlobaleZeit - 3.0) < 0.0000000001) //if (dGlobaleZeit == 3.0) Tanke voll auf 551. 
+			if (fabs(dGlobaleZeit - 3.0) < 0.0000000001) //if (dGlobaleZeit == 3.0) Tanke voll auf 55. 
 				(*it)->dTanken();
 			(*it)->vAusgabe(); cout << endl;
 		}
@@ -156,16 +156,16 @@ void vAufgabe_3()
 	cout << "test < test2? " << (p0 < p1) << endl;
 
 	/*Benutze copy-Constructor, übernimmt Verbrauch und Tankvolumen von p0, */
-	PKW copy(p0);
-	cout << "Kopie: " << copy << endl;
+	PKW copy(p1);
+	cout << "Kopie:\n" << copy << endl;
 	/*Benutze diesmal Zuweisungsoperator, übernimmt alle Attribute, z.B. auch p_iID aus Fahrzeug von p0*/
-	PKW assign = p0;
-	cout << "Zuweisung: " << assign << endl;
-
+	PKW assign;
+	assign = p1;
+	cout << "Zuweisung:\n" << assign << endl;
 }
 
 void main() {
-	vAufgabe_2();
+	vAufgabe_3();
 
 	/*string tmp;
 	cin >> tmp;*/

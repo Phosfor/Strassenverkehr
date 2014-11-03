@@ -20,8 +20,9 @@ public:
 
 	virtual ostream& ostreamAusgabe(ostream& os) const;
 
-	bool operator<(const Fahrzeug& other) const;
-
+	bool operator<(const Fahrzeug& other) const; //innerhalb der Klasse: linker Operand = this Zeiger , Rechter Operand = Parameter
+	
+	Fahrzeug& operator=(const Fahrzeug& other);
 private:
 	string p_sName;
 	int p_iID;
@@ -36,4 +37,4 @@ protected:
 	double p_dGesamtStrecke, p_dMaxGeschwindigkeit, p_dZeit;
 };
 
-ostream& operator<<(ostream& os, const Fahrzeug& fahrzeug);
+ostream& operator<<(ostream& os, const Fahrzeug& fahrzeug); //außerhalb der Klasse: linker Operand = erster Paramenter , Rechter Operand = zweiter Parameter
