@@ -1,4 +1,6 @@
 #include "PKW.h"
+#include "Weg.h"
+#include "SimuClient.h"
 #include <algorithm>
 #include <iostream>
 #include <iomanip>
@@ -103,4 +105,9 @@ PKW& PKW::operator=(const PKW& other)
 	p_dTankinhalt = other.p_dTankinhalt;
 	p_dGesamtVerbrauch = other.p_dGesamtVerbrauch;
 	return *this;
+}
+
+void PKW::vZeichnen(const Weg* pWeg) const
+{
+	bZeichnePKW(getName(), pWeg->getName().c_str(), getAbschnittStrecke() / pWeg->getLaenge(), dGeschwindigkeit(), p_dTankinhalt);
 }

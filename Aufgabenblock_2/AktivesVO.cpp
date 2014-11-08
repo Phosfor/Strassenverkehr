@@ -59,7 +59,7 @@ AktivesVO& AktivesVO::operator=(const AktivesVO& other)
 	return *this;
 }
 
-string& AktivesVO::getName()
+const string& AktivesVO::getName() const
 {
 	return p_sName;
 }

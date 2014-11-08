@@ -31,6 +31,8 @@ public:
 
 	double getAbschnittStrecke() const;
 
+	virtual void vZeichnen(const Weg* pWeg) const{}
+
 private:
 	double p_dGesamtZeit, p_dAbschnittStrecke;
 

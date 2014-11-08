@@ -19,7 +19,7 @@ public:
 
 	AktivesVO& operator=(const AktivesVO& other);
 
-	string& getName();
+	const string& getName() const;
 
 private:
 	string p_sName;

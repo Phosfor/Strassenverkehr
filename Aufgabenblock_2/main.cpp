@@ -2,6 +2,7 @@
 #include "PKW.h"
 #include "Fahrrad.h"
 #include "Weg.h"
+#include "SimuClient.h"
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -187,8 +188,38 @@ void vAufgabe_4()
 	}
 }
 
+void vAufgabe_5()
+{
+	int pPoints[4] = { 100, 250, 600, 250 };
+
+	bInitialisiereGrafik(800, 500);
+	PKW p0("auto", 200, 100);
+	Fahrrad f0("bmx", 60);
+
+	Weg weg1("weg1", 500, Weg::Landstrasse);
+	Weg weg2("weg2", 500, Weg::Landstrasse);
+
+	bZeichneStrasse(weg1.getName().c_str(), weg2.getName().c_str(), 500, 2, pPoints);
+
+	weg1.vAnnahme(&p0, 3.0);
+	weg2.vAnnahme(&f0);
+
+	double dInterval = 0.3;
+	while (dGlobaleZeit < 10.0)
+	{
+		dGlobaleZeit += dInterval;//dGlobaleZeit anfangs 0;
+		vSetzeZeit(dGlobaleZeit);
+		weg1.vAbfertigung();
+		weg2.vAbfertigung();
+		p0.vZeichnen(&weg1);
+		f0.vZeichnen(&weg2);
+	}
+
+	vBeendeGrafik();
+}
+
 void main() {
-	vAufgabe_4();
+	vAufgabe_5();
 
 	/*string tmp;
 	cin >> tmp;*/

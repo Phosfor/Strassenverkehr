@@ -21,6 +21,7 @@ public:
 	virtual double dTanken(double dMenge = -1.0);
 	PKW& operator=(const PKW& other);
 
+	virtual void vZeichnen(const Weg* pWeg) const;
 private:
 	double p_dVerbrauch, p_dTankinhalt, p_dTankvolumen, p_dGesamtVerbrauch;
 	void vInitialisiere();

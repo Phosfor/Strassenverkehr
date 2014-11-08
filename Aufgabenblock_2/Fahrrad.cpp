@@ -1,4 +1,6 @@
 #include "Fahrrad.h"
+#include "Weg.h"
+#include "SimuClient.h"
 #include <algorithm>
 
 Fahrrad::~Fahrrad(void)
@@ -22,4 +24,10 @@ double Fahrrad::dGeschwindigkeit() const
 	//if(dGeschwindigkeit < 12.0) dGeschwindigkeit = 12.0;// falls dGeschwindigkeit durch die Schleife auf unter 12.0 fällt
 	dGeschwindigkeit = min(max(12.0, dGeschwindigkeit), Fahrzeug::dGeschwindigkeit());
 	return dGeschwindigkeit;
+}
+
+
+void Fahrrad::vZeichnen(const Weg* pWeg) const
+{
+	bZeichneFahrrad(getName(), pWeg->getName().c_str(), getAbschnittStrecke() / pWeg->getLaenge(), dGeschwindigkeit());
 }

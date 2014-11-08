@@ -13,5 +13,6 @@ public:
 	virtual ~Fahrrad();
 
 	virtual double dGeschwindigkeit() const;
+	virtual void vZeichnen(const Weg* pWeg) const;
 };
 
