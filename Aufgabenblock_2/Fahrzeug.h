@@ -21,6 +21,7 @@ public:
 	virtual double dTanken(double dMenge = -1.0);
 
 	void vNeueStrecke(const Weg* pWeg);
+	void vNeueStrecke(const Weg* pWeg, double dStartzeit);
 
 	virtual ostream& ostreamAusgabe(ostream& os) const;
 

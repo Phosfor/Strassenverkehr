@@ -169,14 +169,27 @@ void vAufgabe_3()
 void vAufgabe_4()
 {
 	vFahrzeugHeader();
-	dGlobaleZeit = 1.0;
-	PKW p0("test", 10.0, 100, 3000);
-	Weg weg("weg", 100);
-	cout << p0 << endl << weg << endl;
+	PKW p0("auto", 100, 100);
+	Fahrrad f0("bmx", 60);
+
+	Weg weg("weg", 10000, Weg::Innerorts);
+	weg.vAnnahme(&p0, 2.0);
+	weg.vAnnahme(&f0);
+	cout << weg << endl;
+
+	double dInterval = 0.3;
+	while (dGlobaleZeit < 5.0)
+	{
+		dGlobaleZeit += dInterval;//dGlobaleZeit anfangs 0;
+		p0.vAbfertigung();
+		f0.vAbfertigung();
+		cout << p0 << endl;
+		cout << f0 << endl;
+	}
 }
 
 void main() {
-	vAufgabe_2();
+	vAufgabe_4();
 
 	/*string tmp;
 	cin >> tmp;*/

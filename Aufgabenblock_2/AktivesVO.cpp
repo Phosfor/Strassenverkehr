@@ -38,6 +38,7 @@ void AktivesVO::vInitialisiere()
 ostream& AktivesVO::ostreamAusgabe(ostream& os) const
 {
 	os << resetiosflags(ios::right) << setiosflags(ios::left | ios::fixed);
+	os << setprecision(1);
 	os << setw(4) << p_iID;
 	os << setw(7) << p_sName << " : ";
 
@@ -56,6 +57,11 @@ AktivesVO& AktivesVO::operator=(const AktivesVO& other)
 	p_iID = other.p_iID;
 
 	return *this;
+}
+
+string& AktivesVO::getName()
+{
+	return p_sName;
 }
 
 /*Durch operatoren Überladung wird für << ostreamAusgabe aufgerufen.*/

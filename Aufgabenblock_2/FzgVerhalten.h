@@ -9,9 +9,11 @@ public:
 	FzgVerhalten(const Weg* pWeg);
 	virtual ~FzgVerhalten();
 
-	virtual double dStrecke(const Fahrzeug* pFzg, double dZeit);
+	virtual double dStrecke(const Fahrzeug* pFzg, double dZeit) = 0;
 
-private:
+	const Weg* getWeg() const;
+
+protected:
 	const Weg* p_pWeg;
 };
 

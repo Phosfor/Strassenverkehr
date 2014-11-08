@@ -1,8 +1,11 @@
 #include "Fahrzeug.h"
 #include <iostream>
 #include <iomanip>
+#include <algorithm>
 
-#include "FzgVerhalten.h"
+#include "FzgFahren.h"
+#include "FzgParken.h"
+#include "Weg.h"
 
 extern double dGlobaleZeit;
 
@@ -37,7 +40,7 @@ void Fahrzeug::vInitialisiere()
 	p_dGesamtStrecke = 0.0;
 	p_dAbschnittStrecke = 0.0;
 	p_dGesamtZeit = 0.0;
-	p_pVerhalten = new FzgVerhalten(NULL);
+	p_pVerhalten = new FzgFahren(NULL);
 }
 
 Fahrzeug::~Fahrzeug()
@@ -60,7 +63,19 @@ void Fahrzeug::vAbfertigung()
 
 double Fahrzeug::dGeschwindigkeit() const
 {
-	return p_dMaxGeschwindigkeit;
+	double dGeschwindigkeit = p_dMaxGeschwindigkeit;
+	const Weg* weg = p_pVerhalten->getWeg();
+	if (weg) {
+		switch (weg->getLimit()) {
+		case Weg::Innerorts:
+			dGeschwindigkeit = min(dGeschwindigkeit, 50.0);
+			break;
+		case Weg::Landstrasse:
+			dGeschwindigkeit = min(dGeschwindigkeit, 100.0);
+			break;
+		}
+	}
+	return dGeschwindigkeit;
 }
 
 double Fahrzeug::dTanken(double dMenge)
@@ -71,13 +86,18 @@ double Fahrzeug::dTanken(double dMenge)
 void Fahrzeug::vNeueStrecke(const Weg* pWeg)
 {
 	delete p_pVerhalten;
-	p_pVerhalten = new FzgVerhalten(pWeg);
+	p_pVerhalten = new FzgFahren(pWeg);
+}
+
+void Fahrzeug::vNeueStrecke(const Weg* pWeg, double dStartZeit)
+{
+	delete p_pVerhalten;
+	p_pVerhalten = new FzgParken(pWeg, dStartZeit);
 }
 
 ostream& Fahrzeug::ostreamAusgabe(ostream& os) const
 {
 	AktivesVO::ostreamAusgabe(os);
-	os << setprecision(1);
 	os << setw(10) << dGeschwindigkeit();
 	os << setw(10) << p_dMaxGeschwindigkeit;
 	os << setw(10) << p_dAbschnittStrecke;

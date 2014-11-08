@@ -19,6 +19,8 @@ public:
 
 	AktivesVO& operator=(const AktivesVO& other);
 
+	string& getName();
+
 private:
 	string p_sName;
 	int p_iID;

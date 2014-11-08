@@ -22,6 +22,11 @@ public:
 
 	double getLaenge() const;
 
+	void vAnnahme(Fahrzeug* pFzg);
+	void vAnnahme(Fahrzeug* pFzg, double dStartzeit);
+
+	Begrenzung getLimit() const;
+
 private:
 	double p_dLaenge;
 	Begrenzung p_eLimit;
