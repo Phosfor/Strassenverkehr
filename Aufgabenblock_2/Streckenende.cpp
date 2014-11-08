@@ -19,4 +19,5 @@ Streckenende::~Streckenende()
 void Streckenende::vBearbeiten()
 {
 	cout << ">>> Streckenende: " << p_pFahrzeug->getName() << " auf " << p_pWeg->getName() << endl;
+	p_pWeg->vAbgabe(p_pFahrzeug);
 }

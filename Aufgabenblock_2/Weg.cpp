@@ -28,6 +28,7 @@ void Weg::vAbfertigung()
 			ex->vBearbeiten();
 		}
 	}
+	p_pFahrzeuge.vAktualisieren();
 }
 
 double Weg::getLaenge() const
@@ -43,8 +44,18 @@ void Weg::vAnnahme(Fahrzeug* pFzg)
 
 void Weg::vAnnahme(Fahrzeug* pFzg, double dStartzeit)
 {
-	p_pFahrzeuge.push_back(pFzg);
+	p_pFahrzeuge.push_front(pFzg);
 	pFzg->vNeueStrecke(this, dStartzeit);
+}
+
+void Weg::vAbgabe(Fahrzeug* pFzg)
+{
+	for (LazyListe<Fahrzeug*>::iterator it = p_pFahrzeuge.begin(); it != p_pFahrzeuge.end(); it++) {
+		if (*it == pFzg) {
+			p_pFahrzeuge.erase(it);
+			return;
+		}
+	}
 }
 
 ostream& Weg::ostreamAusgabe(ostream& os) const

@@ -218,6 +218,49 @@ void vAufgabe_5()
 	vBeendeGrafik();
 }
 
+void vAufgabe_6a()
+{
+	LazyListe<int> liste;
+	for (int i = 0; i < 10; i++)
+		liste.push_back(rand() % 10 + 1);
+	liste.vAktualisieren();
+
+	for (LazyListe<int>::iterator it = liste.begin(); it != liste.end(); it++) {
+		cout << *it << endl;
+		if (*it > 5)
+			liste.erase(it);
+	}
+
+	cout << "===" << endl;
+
+	for (LazyListe<int>::iterator it = liste.begin(); it != liste.end(); it++) {
+		cout << *it << endl;
+	}
+
+	cout << "===" << endl;
+
+	liste.vAktualisieren();
+	for (LazyListe<int>::iterator it = liste.begin(); it != liste.end(); it++) {
+		cout << *it << endl;
+	}
+
+	cout << "===" << endl;
+
+	liste.push_front(-1);
+	liste.push_back(99);
+
+	for (LazyListe<int>::const_iterator it = liste.begin(); it != liste.end(); it++) {
+		cout << *it << endl;
+	}
+
+	cout << "===" << endl;
+
+	liste.vAktualisieren();
+	for (LazyListe<int>::iterator it = liste.begin(); it != liste.end(); it++) {
+		cout << *it << endl;
+	}
+}
+
 void main() {
 	vAufgabe_5();
 

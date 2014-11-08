@@ -1,6 +1,6 @@
 #pragma once
 #include "AktivesVO.h"
-#include <list>
+#include "LazyListe.h"
 #include <string>
 
 using namespace std;
@@ -25,12 +25,14 @@ public:
 	void vAnnahme(Fahrzeug* pFzg);
 	void vAnnahme(Fahrzeug* pFzg, double dStartzeit);
 
+	void vAbgabe(Fahrzeug* pFzg);
+
 	Begrenzung getLimit() const;
 
 private:
 	double p_dLaenge;
 	Begrenzung p_eLimit;
-	list<Fahrzeug*> p_pFahrzeuge;
+	LazyListe<Fahrzeug*> p_pFahrzeuge;
 
 };
 
