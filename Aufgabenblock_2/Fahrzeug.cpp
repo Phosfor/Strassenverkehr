@@ -83,13 +83,13 @@ double Fahrzeug::dTanken(double dMenge)
 	return 0.0;
 }
 
-void Fahrzeug::vNeueStrecke(const Weg* pWeg)
+void Fahrzeug::vNeueStrecke(Weg* pWeg)
 {
 	delete p_pVerhalten;
 	p_pVerhalten = new FzgFahren(pWeg);
 }
 
-void Fahrzeug::vNeueStrecke(const Weg* pWeg, double dStartZeit)
+void Fahrzeug::vNeueStrecke(Weg* pWeg, double dStartZeit)
 {
 	delete p_pVerhalten;
 	p_pVerhalten = new FzgParken(pWeg, dStartZeit);

@@ -6,14 +6,14 @@ class Fahrzeug;
 class FzgVerhalten
 {
 public:
-	FzgVerhalten(const Weg* pWeg);
+	FzgVerhalten(Weg* pWeg);
 	virtual ~FzgVerhalten();
 
-	virtual double dStrecke(const Fahrzeug* pFzg, double dZeit) = 0;
+	virtual double dStrecke(Fahrzeug* pFzg, double dZeit) = 0;
 
 	const Weg* getWeg() const;
 
 protected:
-	const Weg* p_pWeg;
+	Weg* p_pWeg;
 };
 

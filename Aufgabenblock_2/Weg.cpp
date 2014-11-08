@@ -1,5 +1,6 @@
 #include "Weg.h"
 #include "Fahrzeug.h"
+#include "FahrAusnahme.h"
 #include <iomanip>
 
 Weg::Weg() : AktivesVO()
@@ -20,7 +21,13 @@ Weg::~Weg()
 
 void Weg::vAbfertigung()
 {
-
+	for (list<Fahrzeug*>::const_iterator it = p_pFahrzeuge.begin(); it != p_pFahrzeuge.end(); it++) {
+		try {
+			(*it)->vAbfertigung();
+		} catch (FahrAusnahme* ex) {
+			ex->vBearbeiten();
+		}
+	}
 }
 
 double Weg::getLaenge() const

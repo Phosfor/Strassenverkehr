@@ -1,6 +1,6 @@
 #include "FzgVerhalten.h"
 
-FzgVerhalten::FzgVerhalten(const Weg* pWeg) : p_pWeg(pWeg)
+FzgVerhalten::FzgVerhalten(Weg* pWeg) : p_pWeg(pWeg)
 {
 }
 

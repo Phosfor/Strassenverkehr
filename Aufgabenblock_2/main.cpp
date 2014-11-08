@@ -172,17 +172,16 @@ void vAufgabe_4()
 	PKW p0("auto", 100, 100);
 	Fahrrad f0("bmx", 60);
 
-	Weg weg("weg", 10000, Weg::Innerorts);
-	weg.vAnnahme(&p0, 2.0);
+	Weg weg("weg", 100, Weg::Innerorts);
+	weg.vAnnahme(&p0, 3.0);
 	weg.vAnnahme(&f0);
 	cout << weg << endl;
 
 	double dInterval = 0.3;
-	while (dGlobaleZeit < 5.0)
+	while (dGlobaleZeit < 6.0)
 	{
 		dGlobaleZeit += dInterval;//dGlobaleZeit anfangs 0;
-		p0.vAbfertigung();
-		f0.vAbfertigung();
+		weg.vAbfertigung();
 		cout << p0 << endl;
 		cout << f0 << endl;
 	}
