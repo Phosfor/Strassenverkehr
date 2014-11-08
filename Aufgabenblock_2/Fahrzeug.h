@@ -1,9 +1,12 @@
 #pragma once
 #include <string>
+#include "AktivesVO.h"
 
 using namespace std;
+class FzgVerhalten;
+class Weg;
 
-class Fahrzeug
+class Fahrzeug : public AktivesVO
 {
 public:
 	Fahrzeug();
@@ -13,28 +16,27 @@ public:
 	virtual ~Fahrzeug();
 
 	virtual void vAbfertigung();
-	void vAusgabe() const;
 	virtual double dGeschwindigkeit() const;
 
 	virtual double dTanken(double dMenge = -1.0);
+
+	void vNeueStrecke(const Weg* pWeg);
 
 	virtual ostream& ostreamAusgabe(ostream& os) const;
 
 	bool operator<(const Fahrzeug& other) const; //innerhalb der Klasse: linker Operand = this Zeiger , Rechter Operand = Parameter
 	
 	Fahrzeug& operator=(const Fahrzeug& other);
+
+	double getAbschnittStrecke() const;
+
 private:
-	string p_sName;
-	int p_iID;
+	double p_dGesamtZeit, p_dAbschnittStrecke;
 
-	double p_dGesamtZeit;
-
-	static int p_iMaxID;
+	FzgVerhalten* p_pVerhalten;
 
 	void vInitialisiere();
 
 protected:
-	double p_dGesamtStrecke, p_dMaxGeschwindigkeit, p_dZeit;
+	double p_dGesamtStrecke, p_dMaxGeschwindigkeit;
 };
-
-ostream& operator<<(ostream& os, const Fahrzeug& fahrzeug); //außerhalb der Klasse: linker Operand = erster Paramenter , Rechter Operand = zweiter Parameter

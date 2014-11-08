@@ -1,6 +1,7 @@
 #include "Fahrzeug.h"
 #include "PKW.h"
 #include "Fahrrad.h"
+#include "Weg.h"
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -17,7 +18,8 @@ void vFahrzeugHeader()
 	cout << setw(7) << "Name" << " : ";
 	cout << setw(10) << "KmH";
 	cout << setw(10) << "MaxKmh";
-	cout << setw(10) << "Strecke";
+	cout << setw(10) << "Abschnitt";
+	cout << setw(10) << "Gesamt";
 	cout << setw(7) << "Tank";
 	cout << setw(10) << "Verbrauch";
 	cout << "\n+++++++++++++++++++++++++++++++++++++++++" << endl;
@@ -164,8 +166,17 @@ void vAufgabe_3()
 	cout << "Zuweisung:\n" << assign << endl;
 }
 
+void vAufgabe_4()
+{
+	vFahrzeugHeader();
+	dGlobaleZeit = 1.0;
+	PKW p0("test", 10.0, 100, 3000);
+	Weg weg("weg", 100);
+	cout << p0 << endl << weg << endl;
+}
+
 void main() {
-	vAufgabe_3();
+	vAufgabe_2();
 
 	/*string tmp;
 	cin >> tmp;*/
