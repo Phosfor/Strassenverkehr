@@ -29,5 +29,5 @@ double Fahrrad::dGeschwindigkeit() const
 
 void Fahrrad::vZeichnen(const Weg* pWeg) const
 {
-	bZeichneFahrrad(getName(), pWeg->getName().c_str(), getAbschnittStrecke() / pWeg->getLaenge(), dGeschwindigkeit());
+	bZeichneFahrrad(getName().c_str(), pWeg->getName().c_str(), getAbschnittStrecke() / pWeg->getLaenge(), dGeschwindigkeit());
 }

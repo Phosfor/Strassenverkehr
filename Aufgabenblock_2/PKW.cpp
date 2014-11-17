@@ -109,5 +109,5 @@ PKW& PKW::operator=(const PKW& other)
 
 void PKW::vZeichnen(const Weg* pWeg) const
 {
-	bZeichnePKW(getName(), pWeg->getName().c_str(), getAbschnittStrecke() / pWeg->getLaenge(), dGeschwindigkeit(), p_dTankinhalt);
+	bZeichnePKW(getName().c_str(), pWeg->getName().c_str(), getAbschnittStrecke() / pWeg->getLaenge(), dGeschwindigkeit(), p_dTankinhalt);
 }
