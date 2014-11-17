@@ -162,3 +162,4 @@ $RECYCLE.BIN/
 *.dll
 /Aufgabenblock_2/SimuClient.h
 /Aufgabenblock_2/SimuClient.lib
+*.lib
