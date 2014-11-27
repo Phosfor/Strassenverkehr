@@ -40,7 +40,7 @@ void Fahrzeug::vInitialisiere()
 	p_dGesamtStrecke = 0.0;
 	p_dAbschnittStrecke = 0.0;
 	p_dGesamtZeit = 0.0;
-	p_pVerhalten = new FzgFahren(NULL);
+	p_pVerhalten = NULL;
 }
 
 Fahrzeug::~Fahrzeug()
@@ -56,23 +56,29 @@ void Fahrzeug::vAbfertigung()
 	if (dZeitDiff == 0.0) return;
 	p_dZeit = dGlobaleZeit; //p_dZeit übernimmt den Wert von dGlobalezeit; dGlobaleZeit wird außerhalb der Funktion extern definiert(s.o.)
 
-	double dStrecke = p_pVerhalten->dStrecke(this, dZeitDiff);
+	double dStrecke = dZeitDiff * dGeschwindigkeit();
+	if (p_pVerhalten)
+		dStrecke = p_pVerhalten->dStrecke(this, dZeitDiff);
 	p_dGesamtStrecke += dStrecke;
 	p_dAbschnittStrecke += dStrecke;
+	if (p_pVerhalten)
+		p_pVerhalten->getWeg()->setSchranke(p_dAbschnittStrecke);
 }
 
 double Fahrzeug::dGeschwindigkeit() const
 {
 	double dGeschwindigkeit = p_dMaxGeschwindigkeit;
-	const Weg* weg = p_pVerhalten->getWeg();
-	if (weg) {
-		switch (weg->getLimit()) {
-		case Weg::Innerorts:
-			dGeschwindigkeit = min(dGeschwindigkeit, 50.0);
-			break;
-		case Weg::Landstrasse:
-			dGeschwindigkeit = min(dGeschwindigkeit, 100.0);
-			break;
+	if (p_pVerhalten) {
+		const Weg* weg = p_pVerhalten->getWeg();
+		if (weg) {
+			switch (weg->getLimit()) {
+			case Weg::Innerorts:
+				dGeschwindigkeit = min(dGeschwindigkeit, 50.0);
+				break;
+			case Weg::Landstrasse:
+				dGeschwindigkeit = min(dGeschwindigkeit, 100.0);
+				break;
+			}
 		}
 	}
 	return dGeschwindigkeit;
@@ -85,14 +91,18 @@ double Fahrzeug::dTanken(double dMenge)
 
 void Fahrzeug::vNeueStrecke(Weg* pWeg)
 {
-	delete p_pVerhalten;
+	if (p_pVerhalten)
+		delete p_pVerhalten;
 	p_pVerhalten = new FzgFahren(pWeg);
+	p_dAbschnittStrecke = 0;
 }
 
 void Fahrzeug::vNeueStrecke(Weg* pWeg, double dStartZeit)
 {
-	delete p_pVerhalten;
+	if (p_pVerhalten)
+		delete p_pVerhalten;
 	p_pVerhalten = new FzgParken(pWeg, dStartZeit);
+	p_dAbschnittStrecke = 0;
 }
 
 ostream& Fahrzeug::ostreamAusgabe(ostream& os) const
@@ -125,4 +135,9 @@ Fahrzeug& Fahrzeug::operator=(const Fahrzeug& other)
 double Fahrzeug::getAbschnittStrecke() const
 {
 	return p_dAbschnittStrecke;
+}
+
+FzgVerhalten* Fahrzeug::getVerhalten()
+{
+	return p_pVerhalten;
 }

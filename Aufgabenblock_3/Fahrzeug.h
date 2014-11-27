@@ -33,6 +33,7 @@ public:
 
 	virtual void vZeichnen(const Weg* pWeg) const{}
 
+	FzgVerhalten* getVerhalten();
 private:
 	double p_dGesamtZeit, p_dAbschnittStrecke;
 

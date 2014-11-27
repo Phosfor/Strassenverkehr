@@ -6,6 +6,7 @@
 using namespace std;
 
 class Fahrzeug;
+class Kreuzung;
 
 class Weg :
 	public AktivesVO
@@ -13,10 +14,12 @@ class Weg :
 public:
 	static enum Begrenzung {Innerorts, Landstrasse, Autobahn};
 	Weg();
-	Weg(const string& sName, double dLaenge, Begrenzung eLimit = Autobahn);
+	Weg(const string& sName, double dLaenge, Begrenzung eLimit = Autobahn, bool bUeberholverbot = true);
 	~Weg();
 
 	virtual void vAbfertigung();
+
+	void vZeichnen();
 
 	virtual ostream& ostreamAusgabe(ostream& os) const;
 
@@ -29,10 +32,21 @@ public:
 
 	Begrenzung getLimit() const;
 
+	double getSchranke() const;
+	void setSchranke(double dSchranke);
+
+	void setRueck(Weg* pRueck);
+	Weg* getRueck();
+	void setZiel(Kreuzung* pZiel);
+	Kreuzung* getZiel();
+
 private:
-	double p_dLaenge;
+	bool p_bUeberholverbot;
+	double p_dLaenge, p_dSchranke;
 	Begrenzung p_eLimit;
 	LazyListe<Fahrzeug*> p_pFahrzeuge;
 
+	Weg* p_pRueck;
+	Kreuzung* p_pZielKreuzung;
 };
 

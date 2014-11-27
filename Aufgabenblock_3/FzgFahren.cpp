@@ -11,11 +11,9 @@ FzgFahren::~FzgFahren()
 double FzgFahren::dStrecke(Fahrzeug* pFzg, double dZeit)
 {
 	double dStrecke = pFzg->dGeschwindigkeit() * dZeit;
-	if (p_pWeg) {
-		double dUebrig = p_pWeg->getLaenge() - pFzg->getAbschnittStrecke();
-		if (dUebrig == 0) //check with delta?!
-			throw new Streckenende(pFzg, p_pWeg);
-		dStrecke = min(dStrecke, dUebrig);
-	}
+	double dUebrig = p_pWeg->getSchranke() - pFzg->getAbschnittStrecke();
+	if (dUebrig == 0 && p_pWeg->getLaenge() == pFzg->getAbschnittStrecke()) //check with delta?!, && noetig?
+		throw new Streckenende(pFzg, p_pWeg);
+	dStrecke = min(dStrecke, dUebrig);
 	return dStrecke;
 }

@@ -9,10 +9,11 @@ Weg::Weg() : AktivesVO()
 }
 
 
-Weg::Weg(const string& sName, double dLaenge, Weg::Begrenzung eLimit) : AktivesVO(sName)
+Weg::Weg(const string& sName, double dLaenge, Weg::Begrenzung eLimit, bool bUeberholverbot) : AktivesVO(sName)
 {
 	p_dLaenge = dLaenge;
 	p_eLimit = eLimit;
+	p_bUeberholverbot = bUeberholverbot;
 }
 
 Weg::~Weg()
@@ -21,6 +22,7 @@ Weg::~Weg()
 
 void Weg::vAbfertigung()
 {
+	p_dSchranke = p_dLaenge;
 	for (list<Fahrzeug*>::const_iterator it = p_pFahrzeuge.begin(); it != p_pFahrzeuge.end(); it++) {
 		try {
 			(*it)->vAbfertigung();
@@ -75,4 +77,41 @@ ostream& Weg::ostreamAusgabe(ostream& os) const
 Weg::Begrenzung Weg::getLimit() const
 {
 	return p_eLimit;
+}
+
+double Weg::getSchranke() const
+{
+	return p_dSchranke;
+}
+
+void Weg::setSchranke(double dSchranke)
+{
+	if (p_bUeberholverbot)
+		p_dSchranke = dSchranke;
+}
+
+void Weg::vZeichnen()
+{
+	for (list<Fahrzeug*>::const_iterator it = p_pFahrzeuge.begin(); it != p_pFahrzeuge.end(); it++)
+		(*it)->vZeichnen(this);
+}
+
+void Weg::setRueck(Weg* pRueck)
+{
+	p_pRueck = pRueck;
+}
+
+Weg* Weg::getRueck()
+{
+	return p_pRueck;
+}
+
+void Weg::setZiel(Kreuzung* pZiel)
+{
+	p_pZielKreuzung = pZiel;
+}
+
+Kreuzung* Weg::getZiel()
+{
+	return p_pZielKreuzung;
 }

@@ -11,7 +11,7 @@ public:
 
 	virtual double dStrecke(Fahrzeug* pFzg, double dZeit) = 0;
 
-	const Weg* getWeg() const;
+	Weg* getWeg() const;
 
 protected:
 	Weg* p_pWeg;

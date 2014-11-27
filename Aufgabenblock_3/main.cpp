@@ -3,6 +3,7 @@
 #include "Fahrrad.h"
 #include "Weg.h"
 #include "SimuClient.h"
+#include "Kreuzung.h"
 #include <string>
 #include <iostream>
 #include <iomanip>
@@ -193,7 +194,7 @@ void vAufgabe_5()
 	int pPoints[4] = { 100, 250, 600, 250 };
 
 	bInitialisiereGrafik(800, 500);
-	PKW p0("auto", 200, 100);
+	PKW p0("auto", 200, 100), p1("auto2", 200, 100);
 	Fahrrad f0("bmx", 60);
 
 	Weg weg1("weg1", 500, Weg::Landstrasse);
@@ -202,6 +203,7 @@ void vAufgabe_5()
 	bZeichneStrasse(weg1.getName().c_str(), weg2.getName().c_str(), 500, 2, pPoints);
 
 	weg1.vAnnahme(&p0, 3.0);
+	weg1.vAnnahme(&p1);
 	weg2.vAnnahme(&f0);
 
 	double dInterval = 0.3;
@@ -261,10 +263,139 @@ void vAufgabe_6a()
 	}
 }
 
+void vAufgabe_7()
+{
+	int pPoints[4] = { 100, 250, 600, 250 };
+
+	bInitialisiereGrafik(800, 500);
+	PKW p0("auto", 200, 100), p1("auto2", 200);
+	Fahrrad f0("bmx", 60);
+
+	Weg weg1("weg1", 350, Weg::Landstrasse, false);
+	Weg weg2("weg2", 350, Weg::Landstrasse);
+
+	bZeichneStrasse(weg1.getName().c_str(), weg2.getName().c_str(), 350, 2, pPoints);
+
+	weg1.vAnnahme(&p0, 3.0);
+	weg1.vAnnahme(&f0, 2.0);
+
+	double dInterval = 0.1;
+	while (dGlobaleZeit < 20.0)
+	{
+		dGlobaleZeit += dInterval;//dGlobaleZeit anfangs 0;
+		vSetzeZeit(dGlobaleZeit);
+		weg1.vAbfertigung();
+		//weg2.vAbfertigung();
+		weg1.vZeichnen();
+
+		cout << weg1 << endl;
+
+		if (fabs(dGlobaleZeit - 10.0) < 0.00001)
+			weg1.vAnnahme(&p1, 4.0);
+	}
+
+	vBeendeGrafik();
+}
+
+void vAufgabe_8_alt()
+{
+	Kreuzung k1("K1", 1000.0), k2("K2", 0.0);
+	k1.vVerbinde("s1", "s2", 300, &k2);
+
+	PKW p0("auto", 200, 100);
+	k1.vAnnahme(&p0, 0.0);
+
+
+	double dInterval = 0.1;
+	while (dGlobaleZeit < 20.0)
+	{
+		dGlobaleZeit += dInterval;//dGlobaleZeit anfangs 0;
+		k1.vAbfertigung();
+		k2.vAbfertigung();
+		cout << p0 << endl;
+	}
+}
+
+
+void vAufgabe_8()
+{
+	bInitialisiereGrafik(1000, 600);
+	Kreuzung kr1("Kr1", 0), kr2("Kr2", 1000), kr3("Kr3", 0), kr4("Kr4", 0);
+	bZeichneKreuzung(680, 40); //Kr1
+	bZeichneKreuzung(680, 300); //Kr2
+	bZeichneKreuzung(680, 570); //Kr3
+	bZeichneKreuzung(320, 300); //Kr4
+
+	kr1.vVerbinde("W12", "W21", 40, &kr2, Weg::Innerorts);
+	kr2.vVerbinde("W23a", "W32a", 112, &kr3, Weg::Autobahn, false);
+	kr2.vVerbinde("W23b", "W32b", 40, &kr3, Weg::Innerorts);
+	kr2.vVerbinde("W24", "W42", 55, &kr4, Weg::Innerorts);
+	kr3.vVerbinde("W34", "W43", 85, &kr4, Weg::Autobahn, false);
+	kr4.vVerbinde("W44a", "W44b", 130, &kr4, Weg::Landstrasse, false);
+
+	int Str1[] = {
+		680, 40,
+		680, 300
+	}, Str2[] = {
+		680, 300,
+		850, 300,
+		970, 390,
+		970, 500,
+		850, 570,
+		680, 570
+	}, Str3[] = {
+		680, 300,
+		680, 570
+	}, Str4[] = {
+		680, 300,
+		320, 300
+	}, Str5[] = {
+		680, 570,
+		500, 570,
+		350, 510,
+		320, 420,
+		320, 300
+	}, Str6[] = {
+		320, 300,
+		320, 150,
+		200, 60,
+		80, 90,
+		70, 250,
+		170, 300,
+		320, 300
+	};
+	bZeichneStrasse("W12", "W21", 40, 2, Str1);
+	bZeichneStrasse("W23a", "W32a", 115, 6, Str2);
+	bZeichneStrasse("W23b", "W32b", 40, 2, Str3);
+	bZeichneStrasse("W24", "W42", 55, 2, Str4);
+	bZeichneStrasse("W34", "W43", 85, 5, Str5);
+	bZeichneStrasse("W44a", "W44b", 130, 7, Str6);
+
+	PKW p1("P1", 200, 7);
+	kr1.vAnnahme(&p1, 2);
+
+	double dInterval = 0.1;
+	while (dGlobaleZeit < 20.0)
+	{
+		dGlobaleZeit += dInterval;//dGlobaleZeit anfangs 0;
+		kr1.vAbfertigung();
+		kr2.vAbfertigung();
+		kr3.vAbfertigung();
+		kr4.vAbfertigung();
+
+		kr1.vZeichnen();
+		kr2.vZeichnen();
+		kr3.vZeichnen();
+		kr4.vZeichnen();
+
+		cout << p1 << endl;
+	}
+}
+
 void main() {
-	vAufgabe_5();
+	vAufgabe_8();
 
 	/*string tmp;
 	cin >> tmp;*/
-	system("pause");
+	//system("pause");
 }

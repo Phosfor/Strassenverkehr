@@ -10,7 +10,7 @@ FzgVerhalten::~FzgVerhalten()
 }
 
 
-const Weg* FzgVerhalten::getWeg() const
+Weg* FzgVerhalten::getWeg() const
 {
 	return p_pWeg;
 }
