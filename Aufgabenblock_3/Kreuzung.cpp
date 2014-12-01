@@ -53,6 +53,23 @@ void Kreuzung::vZeichnen()
 		(*it)->vZeichnen();
 }
 
+ostream& Kreuzung::ostreamAusgabe(ostream& os) const
+{
+	AktivesVO::ostreamAusgabe(os);
+	os << "( ";
+	for (list<Weg*>::const_iterator it = p_pWege.begin(); it != p_pWege.end(); it++)
+		os << (*it)->getName() << " ";
+	os << ")";
+	return os;
+}
+
+istream& Kreuzung::istreamEingabe(istream& is)
+{
+	AktivesVO::istreamEingabe(is);
+	is >> p_dTankstelle;
+	return is;
+}
+
 Weg* Kreuzung::pZufaelligerWeg(Weg* pWeg)
 {
 	if (p_pWege.size() == 1)

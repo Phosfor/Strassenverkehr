@@ -115,6 +115,14 @@ ostream& Fahrzeug::ostreamAusgabe(ostream& os) const
 
 	return os;
 }
+
+istream& Fahrzeug::istreamEingabe(istream& is)
+{
+	AktivesVO::istreamEingabe(is);
+	is >> p_dMaxGeschwindigkeit;
+	return is;
+}
+
 /*Vergleich zweier Gesamtstrecken unterschiedlicher PKWs*/
 bool Fahrzeug::operator<(const Fahrzeug& other) const
 {

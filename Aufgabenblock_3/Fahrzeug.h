@@ -24,6 +24,7 @@ public:
 	void vNeueStrecke(Weg* pWeg, double dStartzeit);
 
 	virtual ostream& ostreamAusgabe(ostream& os) const;
+	virtual istream& istreamEingabe(istream& is);
 
 	bool operator<(const Fahrzeug& other) const; //innerhalb der Klasse: linker Operand = this Zeiger , Rechter Operand = Parameter
 	

@@ -4,8 +4,10 @@
 #include "Weg.h"
 #include "SimuClient.h"
 #include "Kreuzung.h"
+#include "Welt.h"
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <vector>
 
@@ -392,8 +394,76 @@ void vAufgabe_8()
 	}
 }
 
+void vAufgabe_9a()
+{
+	ifstream is("VO.dat");
+	if (!is.good()) {
+		cout << "Konnte Datei nicht oeffnen..." << endl;
+		return;
+	}
+
+	PKW p, fehler("fehler");
+	Fahrrad f;
+	Kreuzung k;
+
+	try{
+		is >> fehler;
+	}
+	catch (string& str){
+		cout << str << endl;
+	}
+
+	is >> p >> f >> k;
+
+	cout << p << endl;
+	cout << f << endl;
+	cout << k << endl;
+
+	cout << *(AktivesVO::ptObjekt("Porsche")) << endl;
+	try{
+		AktivesVO::ptObjekt("NichtVorhanden");
+	}
+	catch (string& str){
+		cout << str << endl;
+	}
+	try{
+		PKW p2("Porsche");
+	}
+	catch (string& str){
+		cout << str << endl;
+	}
+}
+
+void vAufgabe_9b()
+{
+	ifstream is("Simu.dat");
+	//ifstream is("SimuDisplay.dat");
+	if (!is.good()) {
+		cout << "Konnte Datei nicht oeffnen..." << endl;
+		return;
+	}
+
+	Welt welt;
+	try{
+		welt.vEinlesen(is);
+		//welt.vEinlesenMitGrafik(is);
+	}
+	catch (string& str){
+		cout << str << endl;
+		return;
+	}
+
+	double dInterval = 0.1;
+	while (dGlobaleZeit < 20.0)
+	{
+		dGlobaleZeit += dInterval;
+		welt.vSimulation();
+		//welt.vZeichnen();
+	}
+}
+
 void main() {
-	vAufgabe_8();
+	vAufgabe_9b();
 
 	/*string tmp;
 	cin >> tmp;*/

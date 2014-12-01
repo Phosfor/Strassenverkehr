@@ -10,6 +10,7 @@ class Kreuzung :
 	public AktivesVO
 {
 public:
+	Kreuzung() : AktivesVO(), p_dTankstelle(0) {}
 	Kreuzung(const string& sName, double dTankstelle);
 	virtual ~Kreuzung();
 
@@ -18,6 +19,9 @@ public:
 	void vAnnahme(Fahrzeug* pFzg, double dStartZeit);
 	virtual void vAbfertigung();
 	void vZeichnen();
+
+	virtual ostream& ostreamAusgabe(ostream& os) const;
+	virtual istream& istreamEingabe(istream& is);
 
 	Weg* pZufaelligerWeg(Weg* pWeg);
 private:

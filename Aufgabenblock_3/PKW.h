@@ -17,6 +17,7 @@ public:
 	virtual void vAbfertigung();
 
 	virtual ostream& ostreamAusgabe(ostream& os) const;
+	virtual istream& istreamEingabe(istream& is);
 
 	virtual double dTanken(double dMenge = -1.0);
 	PKW& operator=(const PKW& other);

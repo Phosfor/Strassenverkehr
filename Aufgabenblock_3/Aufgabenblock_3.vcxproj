@@ -91,6 +91,7 @@
     <ClCompile Include="PKW.cpp" />
     <ClCompile Include="Streckenende.cpp" />
     <ClCompile Include="Weg.cpp" />
+    <ClCompile Include="Welt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AktivesVO.h" />
@@ -108,6 +109,7 @@
     <ClInclude Include="SimuClient.h" />
     <ClInclude Include="Streckenende.h" />
     <ClInclude Include="Weg.h" />
+    <ClInclude Include="Welt.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SimuClient.dll" />

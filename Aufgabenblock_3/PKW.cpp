@@ -86,6 +86,14 @@ ostream& PKW::ostreamAusgabe(ostream& os) const
 	return os;
 }
 
+istream& PKW::istreamEingabe(istream& is)
+{
+	Fahrzeug::istreamEingabe(is);
+	is >> p_dVerbrauch >> p_dTankvolumen;
+	p_dTankinhalt = 0.5*p_dTankvolumen;
+	return is;
+}
+
 void PKW::vAbfertigung()
 {
 	if (p_dTankinhalt < 0.0) return;
